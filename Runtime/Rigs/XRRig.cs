@@ -121,6 +121,9 @@ namespace NRVS.Input.Rigs
 
         private void Update()
         {
+            if (inputManager == null)
+                return;
+
             var rightThumbstick = inputManager.isUIRightActive ? new() : inputManager.actions.RightHand.Thumbstick.ReadValue<Vector2>();
 
             // Thumbstick rotations
