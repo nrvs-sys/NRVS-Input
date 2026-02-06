@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-namespace Input
+namespace NRVS.Input
 {
     public class InputController : MonoBehaviour
     {

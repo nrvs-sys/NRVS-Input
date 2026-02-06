@@ -7,48 +7,51 @@ using UnityEngine.InputSystem;
 using UnityEditor;
 #endif
 
-[DisplayName("Toggle")]
-#if UNITY_EDITOR
-[InitializeOnLoad]
-#endif
-public class ToggleInteraction : IInputInteraction
+namespace NRVS.Input
 {
-	private bool isToggled;
-
-	static ToggleInteraction()
+	[DisplayName("Toggle")]
+#if UNITY_EDITOR
+	[InitializeOnLoad]
+#endif
+	public class ToggleInteraction : IInputInteraction
 	{
-		InputSystem.RegisterInteraction<ToggleInteraction>();
-	}
+		private bool isToggled;
 
-	[RuntimeInitializeOnLoadMethod]
-	private static void Initialize()
-	{
-		// Will execute the static constructor as a side effect.
-	}
-
-	public void Process(ref InputInteractionContext context)
-	{
-		// On control release, perform the toggle
-		bool isControlActuated = context.ControlIsActuated(0.1f);
-
-		if (!isControlActuated)
+		static ToggleInteraction()
 		{
-			isToggled = !isToggled;
-			
-			if (isToggled)
+			InputSystem.RegisterInteraction<ToggleInteraction>();
+		}
+
+		[RuntimeInitializeOnLoadMethod]
+		private static void Initialize()
+		{
+			// Will execute the static constructor as a side effect.
+		}
+
+		public void Process(ref InputInteractionContext context)
+		{
+			// On control release, perform the toggle
+			bool isControlActuated = context.ControlIsActuated(0.1f);
+
+			if (!isControlActuated)
 			{
-				context.Started();
-				context.Performed();
-			}
-			else
-			{
-				context.Canceled();
+				isToggled = !isToggled;
+
+				if (isToggled)
+				{
+					context.Started();
+					context.Performed();
+				}
+				else
+				{
+					context.Canceled();
+				}
 			}
 		}
-	}
 
-	public void Reset()
-	{
-		
+		public void Reset()
+		{
+
+		}
 	}
 }

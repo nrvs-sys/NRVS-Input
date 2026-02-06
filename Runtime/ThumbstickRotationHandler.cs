@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using NRVS.Settings;
 
-namespace Input
+namespace NRVS.Input
 {
     public class ThumbstickRotationHandler
     {

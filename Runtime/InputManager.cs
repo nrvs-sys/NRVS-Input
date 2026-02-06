@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using NRVS.Settings;
 
-namespace Input
+namespace NRVS.Input
 {
     [CreateAssetMenu(fileName = "Input Manager_ ", menuName = "Inputs/Input Manager")]
     public class InputManager : ManagedObject
