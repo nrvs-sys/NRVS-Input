@@ -6,6 +6,7 @@ using UnityEngine.Events;
 using UnityEngine.XR;
 using UnityEngine.XR.OpenXR;
 using NRVS.Settings;
+using UnityEngine.InputSystem;
 
 namespace NRVS.Input.Rigs
 {
@@ -15,8 +16,9 @@ namespace NRVS.Input.Rigs
     public class XRRig : InputRig, IRig
     {
         [Header("Dependencies")]
+
         [SerializeField]
-        private InputManager inputManager;
+        InputActionProperty thumbstickInput;
 
         [SerializeField]
         SettingsBehavior xrTurnStyleSettingsBehavior;
@@ -120,10 +122,10 @@ namespace NRVS.Input.Rigs
 
         private void Update()
         {
-            if (inputManager == null)
+            if (thumbstickInput == null || thumbstickInput.action == null)
                 return;
 
-            var rightThumbstick = inputManager.isUIRightActive ? new() : inputManager.actions.RightHand.Thumbstick.ReadValue<Vector2>();
+            var rightThumbstick = thumbstickInput.action.ReadValue<Vector2>();
 
             // Thumbstick rotations
             thumbstickRotationHandler.ProcessInput(rightThumbstick,
